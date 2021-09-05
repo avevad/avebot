@@ -14,3 +14,6 @@ https://docs.pyrogram.org/intro/setup
 ./avebot.py [SESSION]
 ```
 or ```python3 avebot.py [SESSION]``` (restart command will not work)
+
+### Help
+Type ```;help``` in any Telegram chat

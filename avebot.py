@@ -7,7 +7,7 @@ from time import sleep
 
 import time, os, re, sys, random
 
-VERSION = "1.2" # bot version
+VERSION = "1.4" # bot version
 PREF=";"        # command prefix
 MAXLEN=4096     # maximum message length
 
@@ -18,7 +18,7 @@ def edit_wait(msg, text):
     except FloodWait as ex:
         sleep(ex.x)
 
-# append report text to message, truncates text if necessary
+# appends report text to message, truncates text if necessary
 def report(msg, what, keep=0):
     what = str(what)
     spl = what.split('\n')
@@ -43,6 +43,17 @@ def strip_cmd(msg):
 
 if __name__ == "__main__":
     app = Client("avebot" if len(sys.argv) < 2 else sys.argv[1])
+
+    @app.on_message(filters.command("help", prefixes=PREF) & filters.me)
+    def help_msg(_, msg):
+        help_str = f""" Available commands (prefix='{PREF}'):
+    help - show this help
+    test - show bot version
+    stop - stop bot
+    restart - restart bot
+    eval - evaluate Python expression
+    system - run system command"""
+        report(msg, f"\n```{help_str}```")
 
     @app.on_message(filters.command("test", prefixes=PREF) & filters.me)
     def ping(_, msg):
