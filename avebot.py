@@ -42,7 +42,7 @@ def strip_cmd(msg):
     return msg.text[1 + len(msg.command[0]) + 1:]
 
 if __name__ == "__main__":
-    app = Client("avebot")
+    app = Client("avebot" if len(sys.argv) < 2 else sys.argv[1])
 
     @app.on_message(filters.command("test", prefixes=PREF) & filters.me)
     def ping(_, msg):
