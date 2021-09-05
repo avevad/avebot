@@ -7,7 +7,7 @@ from time import sleep
 
 import time, os, re, sys, random
 
-VERSION = "1.4" # bot version
+VERSION = "1.5" # bot version
 PREF=";"        # command prefix
 MAXLEN=4096     # maximum message length
 
@@ -99,6 +99,7 @@ if __name__ == "__main__":
             except Exception:
                 pass
         output += proc.stdout.read().decode(errors="ignore")
+        proc.wait()
         retcode_text = f"Exit code {proc.returncode or 0}"
         overflow = (len(msgtext) + 3 + len(output) + 3 + len(retcode_text)) - MAXLEN
         trunc_text = ""
