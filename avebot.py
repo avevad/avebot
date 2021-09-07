@@ -7,7 +7,7 @@ from time import sleep
 
 import time, os, re, sys, random
 
-VERSION = "1.6" # bot version
+VERSION = "1.7" # bot version
 PREF=";"        # command prefix
 MAXLEN=4096     # maximum message length
 
