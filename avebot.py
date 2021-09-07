@@ -52,6 +52,7 @@ if __name__ == "__main__":
     stop - stop bot
     restart - restart bot
     eval - evaluate Python expression
+    exec - execute Python statement
     system - run system command"""
         report(msg, f"\n```{help_str}```")
 
@@ -77,6 +78,15 @@ if __name__ == "__main__":
         expr = strip_cmd(msg)
         try:
             report(msg, f"\n```{eval(expr)}\n```", keep=1)
+        except Exception as ex:
+            report(msg, f"\n```{ex}\n```", keep=1)
+
+    @app.on_message(filters.command(["exec", "."], prefixes=PREF) & filters.me)
+    def exec_msg(_, msg):
+        stat = strip_cmd(msg)
+        try:
+            exec(stat)
+            report(msg, "success")
         except Exception as ex:
             report(msg, f"\n```{ex}\n```", keep=1)
 
@@ -125,6 +135,7 @@ if __name__ == "__main__":
                 else:
                     res += ch
             msg.reply_to_message.edit(res)
-            report(msg, "layout corrected")
+            report(msg, "layout was corrected")
+
     app.run()
 
