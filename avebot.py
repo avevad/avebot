@@ -109,5 +109,22 @@ if __name__ == "__main__":
         text = msgtext + f"\n```{output}```" + trunc_text + retcode_text
         edit_wait(msg, text)
 
+    EN_LAYOUT = "qwertyuiop[]\\asdfghjkl;'zxcvbnm,./QWERTYUIOP{}|ASDFGHJKL:\"ZXCVBNM<>?"
+    RU_LAYOUT = "йцукенгшщзхъ\\фывапролджэячсмитьбю.ЙЦУКЕНГШЩЗХЪ/ФЫВАПРОЛДЖЭЯЧСМИТЬБЮ,"
+
+    @app.on_message(filters.command('[', prefixes=PREF) & filters.me)
+    def kbd_layout(_, msg):
+        if msg.reply_to_message is not None and msg.reply_to_message.from_user.is_self and msg.reply_to_message.text is not None:
+            text = msg.reply_to_message.text
+            res = ""
+            for ch in text:
+                if EN_LAYOUT.find(ch) != -1:
+                    res += RU_LAYOUT[EN_LAYOUT.find(ch)]
+                elif RU_LAYOUT.find(ch) != -1:
+                    res += EN_LAYOUT[RU_LAYOUT.find(ch)]
+                else:
+                    res += ch
+            msg.reply_to_message.edit(res)
+            report(msg, "layout corrected")
     app.run()
 
