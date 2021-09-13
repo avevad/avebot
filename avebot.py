@@ -7,7 +7,7 @@ from time import sleep
 
 import time, os, re, sys, random
 
-VERSION = "1.7" # bot version
+VERSION = "1.8" # bot version
 PREF=";"        # command prefix
 MAXLEN=4096     # maximum message length
 
@@ -85,7 +85,7 @@ if __name__ == "__main__":
     def exec_msg(_, msg):
         stat = strip_cmd(msg)
         try:
-            exec(stat)
+            exec(stat, globals())
             report(msg, "success")
         except Exception as ex:
             report(msg, f"\n```{ex}\n```", keep=1)
