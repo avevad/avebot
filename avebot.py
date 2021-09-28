@@ -5,9 +5,9 @@ from pyrogram.errors import FloodWait
 from subprocess import *
 from time import sleep
 
-import time, os, re, sys, random
+import time, os, re, sys, random, math
 
-VERSION = "1.8" # bot version
+VERSION = "1.9" # bot version
 PREF=";"        # command prefix
 MAXLEN=4096     # maximum message length
 
@@ -85,7 +85,7 @@ if __name__ == "__main__":
     def exec_msg(_, msg):
         stat = strip_cmd(msg)
         try:
-            exec(stat, globals())
+            exec(stat)
             report(msg, "success")
         except Exception as ex:
             report(msg, f"\n```{ex}\n```", keep=1)
