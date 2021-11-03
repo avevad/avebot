@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 
+import pyrogram
 from pyrogram import Client, filters
 from pyrogram.errors import FloodWait
 from subprocess import *
@@ -7,9 +8,9 @@ from time import sleep
 
 import time, os, re, sys, random, math
 
-VERSION = "1.9" # bot version
-PREF=";"        # command prefix
-MAXLEN=4096     # maximum message length
+VERSION = "1.10" # bot version
+PREF=";"         # command prefix
+MAXLEN=4096      # maximum message length
 
 # edits message and waits if necessary (FloodWait)
 def edit_wait(msg, text):
