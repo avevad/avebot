@@ -8,7 +8,7 @@ from time import sleep
 
 import time, os, re, sys, random, math
 
-VERSION = "1.10" # bot version
+VERSION = "1.11" # bot version
 PREF=";"         # command prefix
 MAXLEN=4096      # maximum message length
 
@@ -82,7 +82,7 @@ if __name__ == "__main__":
         except Exception as ex:
             report(msg, f"\n```{ex}\n```", keep=1)
 
-    @app.on_message(filters.command(["exec", "."], prefixes=PREF) & filters.me)
+    @app.on_message(filters.command(["exec", ">"], prefixes=PREF) & filters.me)
     def exec_msg(_, msg):
         stat = strip_cmd(msg)
         try:
